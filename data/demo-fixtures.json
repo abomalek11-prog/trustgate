@@ -1,0 +1,672 @@
+{
+  "_note": "SYNTHETIC DEMO FIXTURES. Keys derive from SHA-256(\"trustgate-demo-v1:\" + label); nothing here is secret. See lib/demo/seeds.ts.",
+  "generatedFrom": "lib/demo/world.ts",
+  "fixtureEpoch": "2026-09-01T00:00:00Z",
+  "actors": [
+    {
+      "key": "agent:buyer",
+      "name": "Buyer Agent",
+      "org": "Acme Corp",
+      "role": "agent",
+      "description": "Acme’s purchasing agent. Key-bound identity, issuer-verified business credential, $500 delegated purchase authority, signed history.",
+      "did": "did:key:z6MkiH6nZzJR1V1fgdGLTtYqWxTAR1bZz3vkZrpSWyg36tjZ",
+      "keyFingerprint": "a970e380bba56168",
+      "publicKeyMultibase": "z6MkiH6nZzJR1V1fgdGLTtYqWxTAR1bZz3vkZrpSWyg36tjZ"
+    },
+    {
+      "key": "agent:procurement",
+      "name": "Procurement Agent",
+      "org": "Northwind Cloud",
+      "role": "verifier",
+      "description": "Northwind’s selling/procurement gateway. Runs TrustGate on every incoming request before executing a purchase.",
+      "did": "did:key:z6MkrbnW1BzbDEA2jw4YyS6Ltd96Stucib9QT1PiPgXCt6xf",
+      "keyFingerprint": "bbe23780174fbe01",
+      "publicKeyMultibase": "z6MkrbnW1BzbDEA2jw4YyS6Ltd96Stucib9QT1PiPgXCt6xf"
+    },
+    {
+      "key": "agent:clone",
+      "name": "Spoofed Buyer Agent",
+      "org": "unknown",
+      "role": "agent",
+      "description": "An attacker that copied the Buyer Agent’s public profile (DID, credential, grant) but does not hold the Buyer’s private key.",
+      "did": "did:key:z6MkvFo5pdLVWvKjU7PbgdUVWf3MbnagAhRsf6zE9GXCpZoY",
+      "keyFingerprint": "ddc373623683ca95",
+      "publicKeyMultibase": "z6MkvFo5pdLVWvKjU7PbgdUVWf3MbnagAhRsf6zE9GXCpZoY"
+    },
+    {
+      "key": "agent:rogue",
+      "name": "Rogue Reseller Bot",
+      "org": "Rogue Holdings LLC",
+      "role": "agent",
+      "description": "A real agent with a real key and a cryptographically valid credential — from an issuer this verifier does not trust.",
+      "did": "did:key:z6MkjMx26wW3Wq2Vu5pVGVBRnf8ZVQ66i5NtGQoGy2BnHDQd",
+      "keyFingerprint": "dcabdd5b51eeb4c3",
+      "publicKeyMultibase": "z6MkjMx26wW3Wq2Vu5pVGVBRnf8ZVQ66i5NtGQoGy2BnHDQd"
+    },
+    {
+      "key": "issuer:verdant",
+      "name": "Verdant Business Registry",
+      "org": "Verdant Registry Inc.",
+      "role": "issuer",
+      "description": "Trusted KYB registry. Issues VerifiedBusinessAgent credentials after verifying the controlling business.",
+      "did": "did:key:z6MktNm2uaVxpw5dYfa1RvHTxs8rHpEhzKYkxVTf9t8BJ33M",
+      "keyFingerprint": "1d9bd8da1b4cfec4",
+      "publicKeyMultibase": "z6MktNm2uaVxpw5dYfa1RvHTxs8rHpEhzKYkxVTf9t8BJ33M"
+    },
+    {
+      "key": "issuer:shady",
+      "name": "Shady Certs Ltd",
+      "org": "Shady Certs Ltd",
+      "role": "issuer",
+      "description": "Issues credentials to anyone who pays. Signatures are cryptographically valid — the verifier simply does not trust them.",
+      "did": "did:key:z6MkjGPJHJn9gU9vLzdn9yZhz8HfS5JrkvQTGkNDYmp5wkUo",
+      "keyFingerprint": "8ee7408d649f0862",
+      "publicKeyMultibase": "z6MkjGPJHJn9gU9vLzdn9yZhz8HfS5JrkvQTGkNDYmp5wkUo"
+    },
+    {
+      "key": "principal:acme",
+      "name": "Acme Corp Treasury",
+      "org": "Acme Corp",
+      "role": "principal",
+      "description": "The business that owns the Buyer Agent and is on the hook for what it buys. Delegates scoped purchasing authority.",
+      "did": "did:key:z6MkmCH2cdCKxmUixxMSe6yTkjk6XhbMDvA9MDpRYPhf4oEs",
+      "keyFingerprint": "a42660c92e5b4530",
+      "publicKeyMultibase": "z6MkmCH2cdCKxmUixxMSe6yTkjk6XhbMDvA9MDpRYPhf4oEs"
+    },
+    {
+      "key": "principal:rogue-holdings",
+      "name": "Rogue Holdings",
+      "org": "Rogue Holdings LLC",
+      "role": "principal",
+      "description": "Owner of the Rogue Reseller Bot.",
+      "did": "did:key:z6MksW9NPYf4Txhka4af4NdynCRQSiUrit9SCnbBQC99tic7",
+      "keyFingerprint": "e4b1301e82f6d284",
+      "publicKeyMultibase": "z6MksW9NPYf4Txhka4af4NdynCRQSiUrit9SCnbBQC99tic7"
+    },
+    {
+      "key": "counterparty:contoso",
+      "name": "Contoso Data Marketplace",
+      "org": "Contoso",
+      "role": "counterparty",
+      "description": "A past counterparty that signed an attestation about the Buyer Agent.",
+      "did": "did:key:z6MktPuwXATpjYfNXFn2H6TfLCit7895i8fRPpbrrEu6pKcx",
+      "keyFingerprint": "c458b879f8ba096c",
+      "publicKeyMultibase": "z6MktPuwXATpjYfNXFn2H6TfLCit7895i8fRPpbrrEu6pKcx"
+    }
+  ],
+  "agents": {
+    "buyer": {
+      "key": "agent:buyer",
+      "name": "Buyer Agent",
+      "org": "Acme Corp",
+      "role": "agent",
+      "description": "Acme’s purchasing agent. Key-bound identity, issuer-verified business credential, $500 delegated purchase authority, signed history.",
+      "did": "did:key:z6MkiH6nZzJR1V1fgdGLTtYqWxTAR1bZz3vkZrpSWyg36tjZ",
+      "keyFingerprint": "a970e380bba56168",
+      "publicKeyMultibase": "z6MkiH6nZzJR1V1fgdGLTtYqWxTAR1bZz3vkZrpSWyg36tjZ",
+      "slug": "buyer",
+      "kind": "buyer",
+      "controller": "did:key:z6MkmCH2cdCKxmUixxMSe6yTkjk6XhbMDvA9MDpRYPhf4oEs",
+      "credentials": [
+        {
+          "@context": [
+            "https://www.w3.org/ns/credentials/v2",
+            "https://trustgate.dev/ns/v1"
+          ],
+          "id": "urn:uuid:69b9f11e-616f-5b2a-aef9-9dc1c5ed1c48",
+          "type": [
+            "VerifiableCredential",
+            "VerifiedBusinessAgent"
+          ],
+          "issuer": "did:key:z6MktNm2uaVxpw5dYfa1RvHTxs8rHpEhzKYkxVTf9t8BJ33M",
+          "validFrom": "2026-09-01T00:00:00Z",
+          "validUntil": "2027-09-01T00:00:00Z",
+          "credentialSubject": {
+            "id": "did:key:z6MkiH6nZzJR1V1fgdGLTtYqWxTAR1bZz3vkZrpSWyg36tjZ",
+            "controller": "did:key:z6MkmCH2cdCKxmUixxMSe6yTkjk6XhbMDvA9MDpRYPhf4oEs",
+            "businessName": "Acme Corp",
+            "jurisdiction": "US-DE",
+            "businessVerified": true,
+            "verificationLevel": "KYB-2"
+          },
+          "credentialStatus": {
+            "id": "https://verdant.example/status/1#42",
+            "type": "BitstringStatusListEntry",
+            "statusPurpose": "revocation",
+            "statusListIndex": "42",
+            "statusListCredential": "https://verdant.example/status/1"
+          },
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-09-01T00:00:00Z",
+            "verificationMethod": "did:key:z6MktNm2uaVxpw5dYfa1RvHTxs8rHpEhzKYkxVTf9t8BJ33M#z6MktNm2uaVxpw5dYfa1RvHTxs8rHpEhzKYkxVTf9t8BJ33M",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "z5urT6GDAEbTfBZYS2fqaKegawuiE8oNUJZ3ejcct5ctyzX3ofBdzfZEdfR2QJp9ttouX67QtNpeJHm1kTK7iLELZ"
+          }
+        }
+      ],
+      "grants": [
+        {
+          "@context": [
+            "https://trustgate.dev/ns/v1"
+          ],
+          "id": "urn:uuid:c5722560-763d-580a-a6eb-837a81c7a657",
+          "type": [
+            "CapabilityGrant"
+          ],
+          "principal": "did:key:z6MkmCH2cdCKxmUixxMSe6yTkjk6XhbMDvA9MDpRYPhf4oEs",
+          "agent": "did:key:z6MkiH6nZzJR1V1fgdGLTtYqWxTAR1bZz3vkZrpSWyg36tjZ",
+          "authorizationDetails": [
+            {
+              "type": "purchase",
+              "actions": [
+                "purchase"
+              ],
+              "locations": [
+                "vendor:*"
+              ],
+              "constraints": {
+                "maxAmount": {
+                  "value": 500,
+                  "currency": "USD"
+                }
+              }
+            }
+          ],
+          "validFrom": "2026-09-01T00:00:00Z",
+          "validUntil": "2027-03-31T23:59:59Z",
+          "nonce": "2630f37d-33ff-",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-09-01T00:00:00Z",
+            "verificationMethod": "did:key:z6MkmCH2cdCKxmUixxMSe6yTkjk6XhbMDvA9MDpRYPhf4oEs#z6MkmCH2cdCKxmUixxMSe6yTkjk6XhbMDvA9MDpRYPhf4oEs",
+            "proofPurpose": "capabilityDelegation",
+            "proofValue": "z41K7FwHjfHCEy2bi6w7zrtWb77mC2FwqW7kBLoKoabHADF47vMG5YFNbgtLGy3S1vBJp6PVyJSCCg1hhKkBJHurE"
+          }
+        }
+      ],
+      "attestations": [
+        {
+          "@context": [
+            "https://trustgate.dev/ns/v1"
+          ],
+          "type": [
+            "Attestation"
+          ],
+          "issuer": "did:key:z6MkrbnW1BzbDEA2jw4YyS6Ltd96Stucib9QT1PiPgXCt6xf",
+          "id": "urn:uuid:fb29b3b3-4a04-554c-a8ed-864e215b7297",
+          "subject": "did:key:z6MkiH6nZzJR1V1fgdGLTtYqWxTAR1bZz3vkZrpSWyg36tjZ",
+          "action": "purchase",
+          "resource": "vendor:northwind/api-credits",
+          "amount": {
+            "value": 120,
+            "currency": "USD"
+          },
+          "outcome": "completed",
+          "observedAt": "2026-08-12T09:14:00Z",
+          "statement": "Buyer Agent completed a $120 API-credit purchase; payment settled within SLA.",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-08-12T09:14:00Z",
+            "verificationMethod": "did:key:z6MkrbnW1BzbDEA2jw4YyS6Ltd96Stucib9QT1PiPgXCt6xf#z6MkrbnW1BzbDEA2jw4YyS6Ltd96Stucib9QT1PiPgXCt6xf",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "z4hHj4NySzfyJaryPcDak8CWBsZ38o4ABqbFbxZQwPwz1Ur11vwfQTJbRySfkvpFEVG74UDxmG3fwrqa6HAofgtFx"
+          }
+        },
+        {
+          "@context": [
+            "https://trustgate.dev/ns/v1"
+          ],
+          "type": [
+            "Attestation"
+          ],
+          "issuer": "did:key:z6MktPuwXATpjYfNXFn2H6TfLCit7895i8fRPpbrrEu6pKcx",
+          "id": "urn:uuid:a692fe46-69e7-5b25-a3a4-1c0440fc1739",
+          "subject": "did:key:z6MkiH6nZzJR1V1fgdGLTtYqWxTAR1bZz3vkZrpSWyg36tjZ",
+          "action": "purchase",
+          "resource": "vendor:contoso/dataset-license",
+          "amount": {
+            "value": 340,
+            "currency": "USD"
+          },
+          "outcome": "completed",
+          "observedAt": "2026-08-27T15:42:00Z",
+          "statement": "Buyer Agent licensed a dataset for $340; no disputes.",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-08-27T15:42:00Z",
+            "verificationMethod": "did:key:z6MktPuwXATpjYfNXFn2H6TfLCit7895i8fRPpbrrEu6pKcx#z6MktPuwXATpjYfNXFn2H6TfLCit7895i8fRPpbrrEu6pKcx",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "zyT1QgsL4mCRj9RwrbqrZrVBaqV9ZsHHskfTNiyi82sDKArNdCWyxwx1dJtTWd7rMtXcZMGfG2QjfpdKo9F1UWqZ"
+          }
+        }
+      ],
+      "history": [],
+      "riskFlags": []
+    },
+    "procurement": {
+      "key": "agent:procurement",
+      "name": "Procurement Agent",
+      "org": "Northwind Cloud",
+      "role": "verifier",
+      "description": "Northwind’s selling/procurement gateway. Runs TrustGate on every incoming request before executing a purchase.",
+      "did": "did:key:z6MkrbnW1BzbDEA2jw4YyS6Ltd96Stucib9QT1PiPgXCt6xf",
+      "keyFingerprint": "bbe23780174fbe01",
+      "publicKeyMultibase": "z6MkrbnW1BzbDEA2jw4YyS6Ltd96Stucib9QT1PiPgXCt6xf",
+      "slug": "procurement",
+      "kind": "verifier",
+      "credentials": [],
+      "grants": [],
+      "attestations": [],
+      "history": [],
+      "riskFlags": []
+    },
+    "clone": {
+      "key": "agent:clone",
+      "name": "Spoofed Buyer Agent",
+      "org": "unknown",
+      "role": "agent",
+      "description": "An attacker that copied the Buyer Agent’s public profile (DID, credential, grant) but does not hold the Buyer’s private key.",
+      "did": "did:key:z6MkvFo5pdLVWvKjU7PbgdUVWf3MbnagAhRsf6zE9GXCpZoY",
+      "keyFingerprint": "ddc373623683ca95",
+      "publicKeyMultibase": "z6MkvFo5pdLVWvKjU7PbgdUVWf3MbnagAhRsf6zE9GXCpZoY",
+      "slug": "clone",
+      "kind": "clone",
+      "claimsDid": "did:key:z6MkiH6nZzJR1V1fgdGLTtYqWxTAR1bZz3vkZrpSWyg36tjZ",
+      "controller": "did:key:z6MkmCH2cdCKxmUixxMSe6yTkjk6XhbMDvA9MDpRYPhf4oEs",
+      "credentials": [
+        {
+          "@context": [
+            "https://www.w3.org/ns/credentials/v2",
+            "https://trustgate.dev/ns/v1"
+          ],
+          "id": "urn:uuid:69b9f11e-616f-5b2a-aef9-9dc1c5ed1c48",
+          "type": [
+            "VerifiableCredential",
+            "VerifiedBusinessAgent"
+          ],
+          "issuer": "did:key:z6MktNm2uaVxpw5dYfa1RvHTxs8rHpEhzKYkxVTf9t8BJ33M",
+          "validFrom": "2026-09-01T00:00:00Z",
+          "validUntil": "2027-09-01T00:00:00Z",
+          "credentialSubject": {
+            "id": "did:key:z6MkiH6nZzJR1V1fgdGLTtYqWxTAR1bZz3vkZrpSWyg36tjZ",
+            "controller": "did:key:z6MkmCH2cdCKxmUixxMSe6yTkjk6XhbMDvA9MDpRYPhf4oEs",
+            "businessName": "Acme Corp",
+            "jurisdiction": "US-DE",
+            "businessVerified": true,
+            "verificationLevel": "KYB-2"
+          },
+          "credentialStatus": {
+            "id": "https://verdant.example/status/1#42",
+            "type": "BitstringStatusListEntry",
+            "statusPurpose": "revocation",
+            "statusListIndex": "42",
+            "statusListCredential": "https://verdant.example/status/1"
+          },
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-09-01T00:00:00Z",
+            "verificationMethod": "did:key:z6MktNm2uaVxpw5dYfa1RvHTxs8rHpEhzKYkxVTf9t8BJ33M#z6MktNm2uaVxpw5dYfa1RvHTxs8rHpEhzKYkxVTf9t8BJ33M",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "z5urT6GDAEbTfBZYS2fqaKegawuiE8oNUJZ3ejcct5ctyzX3ofBdzfZEdfR2QJp9ttouX67QtNpeJHm1kTK7iLELZ"
+          }
+        }
+      ],
+      "grants": [
+        {
+          "@context": [
+            "https://trustgate.dev/ns/v1"
+          ],
+          "id": "urn:uuid:c5722560-763d-580a-a6eb-837a81c7a657",
+          "type": [
+            "CapabilityGrant"
+          ],
+          "principal": "did:key:z6MkmCH2cdCKxmUixxMSe6yTkjk6XhbMDvA9MDpRYPhf4oEs",
+          "agent": "did:key:z6MkiH6nZzJR1V1fgdGLTtYqWxTAR1bZz3vkZrpSWyg36tjZ",
+          "authorizationDetails": [
+            {
+              "type": "purchase",
+              "actions": [
+                "purchase"
+              ],
+              "locations": [
+                "vendor:*"
+              ],
+              "constraints": {
+                "maxAmount": {
+                  "value": 500,
+                  "currency": "USD"
+                }
+              }
+            }
+          ],
+          "validFrom": "2026-09-01T00:00:00Z",
+          "validUntil": "2027-03-31T23:59:59Z",
+          "nonce": "2630f37d-33ff-",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-09-01T00:00:00Z",
+            "verificationMethod": "did:key:z6MkmCH2cdCKxmUixxMSe6yTkjk6XhbMDvA9MDpRYPhf4oEs#z6MkmCH2cdCKxmUixxMSe6yTkjk6XhbMDvA9MDpRYPhf4oEs",
+            "proofPurpose": "capabilityDelegation",
+            "proofValue": "z41K7FwHjfHCEy2bi6w7zrtWb77mC2FwqW7kBLoKoabHADF47vMG5YFNbgtLGy3S1vBJp6PVyJSCCg1hhKkBJHurE"
+          }
+        }
+      ],
+      "attestations": [
+        {
+          "@context": [
+            "https://trustgate.dev/ns/v1"
+          ],
+          "type": [
+            "Attestation"
+          ],
+          "issuer": "did:key:z6MkrbnW1BzbDEA2jw4YyS6Ltd96Stucib9QT1PiPgXCt6xf",
+          "id": "urn:uuid:fb29b3b3-4a04-554c-a8ed-864e215b7297",
+          "subject": "did:key:z6MkiH6nZzJR1V1fgdGLTtYqWxTAR1bZz3vkZrpSWyg36tjZ",
+          "action": "purchase",
+          "resource": "vendor:northwind/api-credits",
+          "amount": {
+            "value": 120,
+            "currency": "USD"
+          },
+          "outcome": "completed",
+          "observedAt": "2026-08-12T09:14:00Z",
+          "statement": "Buyer Agent completed a $120 API-credit purchase; payment settled within SLA.",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-08-12T09:14:00Z",
+            "verificationMethod": "did:key:z6MkrbnW1BzbDEA2jw4YyS6Ltd96Stucib9QT1PiPgXCt6xf#z6MkrbnW1BzbDEA2jw4YyS6Ltd96Stucib9QT1PiPgXCt6xf",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "z4hHj4NySzfyJaryPcDak8CWBsZ38o4ABqbFbxZQwPwz1Ur11vwfQTJbRySfkvpFEVG74UDxmG3fwrqa6HAofgtFx"
+          }
+        },
+        {
+          "@context": [
+            "https://trustgate.dev/ns/v1"
+          ],
+          "type": [
+            "Attestation"
+          ],
+          "issuer": "did:key:z6MktPuwXATpjYfNXFn2H6TfLCit7895i8fRPpbrrEu6pKcx",
+          "id": "urn:uuid:a692fe46-69e7-5b25-a3a4-1c0440fc1739",
+          "subject": "did:key:z6MkiH6nZzJR1V1fgdGLTtYqWxTAR1bZz3vkZrpSWyg36tjZ",
+          "action": "purchase",
+          "resource": "vendor:contoso/dataset-license",
+          "amount": {
+            "value": 340,
+            "currency": "USD"
+          },
+          "outcome": "completed",
+          "observedAt": "2026-08-27T15:42:00Z",
+          "statement": "Buyer Agent licensed a dataset for $340; no disputes.",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-08-27T15:42:00Z",
+            "verificationMethod": "did:key:z6MktPuwXATpjYfNXFn2H6TfLCit7895i8fRPpbrrEu6pKcx#z6MktPuwXATpjYfNXFn2H6TfLCit7895i8fRPpbrrEu6pKcx",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "zyT1QgsL4mCRj9RwrbqrZrVBaqV9ZsHHskfTNiyi82sDKArNdCWyxwx1dJtTWd7rMtXcZMGfG2QjfpdKo9F1UWqZ"
+          }
+        }
+      ],
+      "history": [],
+      "riskFlags": [
+        "Claims DID did:key:z6MkiH6nZzJR… but its actual key fingerprint is ddc373623683ca95 (mismatch)",
+        "Cannot produce signatures that verify under the claimed DID"
+      ]
+    },
+    "rogue": {
+      "key": "agent:rogue",
+      "name": "Rogue Reseller Bot",
+      "org": "Rogue Holdings LLC",
+      "role": "agent",
+      "description": "A real agent with a real key and a cryptographically valid credential — from an issuer this verifier does not trust.",
+      "did": "did:key:z6MkjMx26wW3Wq2Vu5pVGVBRnf8ZVQ66i5NtGQoGy2BnHDQd",
+      "keyFingerprint": "dcabdd5b51eeb4c3",
+      "publicKeyMultibase": "z6MkjMx26wW3Wq2Vu5pVGVBRnf8ZVQ66i5NtGQoGy2BnHDQd",
+      "slug": "rogue",
+      "kind": "rogue",
+      "controller": "did:key:z6MksW9NPYf4Txhka4af4NdynCRQSiUrit9SCnbBQC99tic7",
+      "credentials": [
+        {
+          "@context": [
+            "https://www.w3.org/ns/credentials/v2",
+            "https://trustgate.dev/ns/v1"
+          ],
+          "id": "urn:uuid:6a288c08-9210-5020-aca9-df754b3ca1ca",
+          "type": [
+            "VerifiableCredential",
+            "VerifiedBusinessAgent"
+          ],
+          "issuer": "did:key:z6MkjGPJHJn9gU9vLzdn9yZhz8HfS5JrkvQTGkNDYmp5wkUo",
+          "validFrom": "2026-09-01T00:00:00Z",
+          "validUntil": "2027-09-01T00:00:00Z",
+          "credentialSubject": {
+            "id": "did:key:z6MkjMx26wW3Wq2Vu5pVGVBRnf8ZVQ66i5NtGQoGy2BnHDQd",
+            "controller": "did:key:z6MksW9NPYf4Txhka4af4NdynCRQSiUrit9SCnbBQC99tic7",
+            "businessName": "Rogue Holdings LLC",
+            "jurisdiction": "XX",
+            "businessVerified": true,
+            "verificationLevel": "self-declared"
+          },
+          "credentialStatus": {
+            "id": "https://shadycerts.example/status/1#7",
+            "type": "BitstringStatusListEntry",
+            "statusPurpose": "revocation",
+            "statusListIndex": "7",
+            "statusListCredential": "https://shadycerts.example/status/1"
+          },
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-09-01T00:00:00Z",
+            "verificationMethod": "did:key:z6MkjGPJHJn9gU9vLzdn9yZhz8HfS5JrkvQTGkNDYmp5wkUo#z6MkjGPJHJn9gU9vLzdn9yZhz8HfS5JrkvQTGkNDYmp5wkUo",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "z4Tvd836EHS1dU17ZJH15fGjm5wrFjA6NX2Hb2WZEnGsNVEyTyPFh5oEuHF5EEHPjt7Zj3cLj5esbU2BUTae6ucdg"
+          }
+        }
+      ],
+      "grants": [
+        {
+          "@context": [
+            "https://trustgate.dev/ns/v1"
+          ],
+          "id": "urn:uuid:fefba8a8-69e4-5ff2-a68b-4f29329b270f",
+          "type": [
+            "CapabilityGrant"
+          ],
+          "principal": "did:key:z6MksW9NPYf4Txhka4af4NdynCRQSiUrit9SCnbBQC99tic7",
+          "agent": "did:key:z6MkjMx26wW3Wq2Vu5pVGVBRnf8ZVQ66i5NtGQoGy2BnHDQd",
+          "authorizationDetails": [
+            {
+              "type": "purchase",
+              "actions": [
+                "purchase"
+              ],
+              "locations": [
+                "vendor:*"
+              ],
+              "constraints": {
+                "maxAmount": {
+                  "value": 500,
+                  "currency": "USD"
+                }
+              }
+            }
+          ],
+          "validFrom": "2026-09-01T00:00:00Z",
+          "validUntil": "2027-03-31T23:59:59Z",
+          "nonce": "d073d5a7-c6a4-",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-09-01T00:00:00Z",
+            "verificationMethod": "did:key:z6MksW9NPYf4Txhka4af4NdynCRQSiUrit9SCnbBQC99tic7#z6MksW9NPYf4Txhka4af4NdynCRQSiUrit9SCnbBQC99tic7",
+            "proofPurpose": "capabilityDelegation",
+            "proofValue": "z5VcWXfevsMy6E1cezPon9sVULCXAiNa9qpuWLAKnyDvsKe3RpiZzETkK5AHnQQvrXd6evqaCaQoELqGQkX8mAMjq"
+          }
+        }
+      ],
+      "attestations": [],
+      "history": [],
+      "riskFlags": [
+        "Credential issuer (Shady Certs Ltd) is not in the verifier’s trusted-issuer list",
+        "No verified counterparty attestations"
+      ]
+    }
+  },
+  "issuers": {
+    "verdant": {
+      "key": "issuer:verdant",
+      "name": "Verdant Business Registry",
+      "org": "Verdant Registry Inc.",
+      "role": "issuer",
+      "description": "Trusted KYB registry. Issues VerifiedBusinessAgent credentials after verifying the controlling business.",
+      "did": "did:key:z6MktNm2uaVxpw5dYfa1RvHTxs8rHpEhzKYkxVTf9t8BJ33M",
+      "keyFingerprint": "1d9bd8da1b4cfec4",
+      "publicKeyMultibase": "z6MktNm2uaVxpw5dYfa1RvHTxs8rHpEhzKYkxVTf9t8BJ33M",
+      "statusListId": "https://verdant.example/status/1",
+      "statusList": {
+        "@context": [
+          "https://www.w3.org/ns/credentials/v2",
+          "https://trustgate.dev/ns/v1"
+        ],
+        "id": "https://verdant.example/status/1",
+        "type": [
+          "VerifiableCredential",
+          "BitstringStatusListCredential"
+        ],
+        "issuer": "did:key:z6MktNm2uaVxpw5dYfa1RvHTxs8rHpEhzKYkxVTf9t8BJ33M",
+        "validFrom": "2026-09-01T00:00:00Z",
+        "credentialSubject": {
+          "id": "https://verdant.example/status/1#list",
+          "type": "BitstringStatusList",
+          "statusPurpose": "revocation",
+          "encodedList": "uAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-09-01T00:00:00Z",
+          "verificationMethod": "did:key:z6MktNm2uaVxpw5dYfa1RvHTxs8rHpEhzKYkxVTf9t8BJ33M#z6MktNm2uaVxpw5dYfa1RvHTxs8rHpEhzKYkxVTf9t8BJ33M",
+          "proofPurpose": "assertionMethod",
+          "proofValue": "z5C1CwtQ3fckauze1t6eCBA6YMdbbRuMJnjaSqhi6VtBDZRH1Tseopnch3ktSehFSWckivoCaGFUBqeebVS24YF1h"
+        }
+      },
+      "revoked": []
+    },
+    "shady": {
+      "key": "issuer:shady",
+      "name": "Shady Certs Ltd",
+      "org": "Shady Certs Ltd",
+      "role": "issuer",
+      "description": "Issues credentials to anyone who pays. Signatures are cryptographically valid — the verifier simply does not trust them.",
+      "did": "did:key:z6MkjGPJHJn9gU9vLzdn9yZhz8HfS5JrkvQTGkNDYmp5wkUo",
+      "keyFingerprint": "8ee7408d649f0862",
+      "publicKeyMultibase": "z6MkjGPJHJn9gU9vLzdn9yZhz8HfS5JrkvQTGkNDYmp5wkUo",
+      "statusListId": "https://shadycerts.example/status/1",
+      "statusList": {
+        "@context": [
+          "https://www.w3.org/ns/credentials/v2",
+          "https://trustgate.dev/ns/v1"
+        ],
+        "id": "https://shadycerts.example/status/1",
+        "type": [
+          "VerifiableCredential",
+          "BitstringStatusListCredential"
+        ],
+        "issuer": "did:key:z6MkjGPJHJn9gU9vLzdn9yZhz8HfS5JrkvQTGkNDYmp5wkUo",
+        "validFrom": "2026-09-01T00:00:00Z",
+        "credentialSubject": {
+          "id": "https://shadycerts.example/status/1#list",
+          "type": "BitstringStatusList",
+          "statusPurpose": "revocation",
+          "encodedList": "uAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-09-01T00:00:00Z",
+          "verificationMethod": "did:key:z6MkjGPJHJn9gU9vLzdn9yZhz8HfS5JrkvQTGkNDYmp5wkUo#z6MkjGPJHJn9gU9vLzdn9yZhz8HfS5JrkvQTGkNDYmp5wkUo",
+          "proofPurpose": "assertionMethod",
+          "proofValue": "zCc9G2xwixu7C1JoTuxHxGD9ByM9x9EiJd8NyXigqd6mijRYWqDUcqSmJGp3F6kscxfya2qp3hmRCdg8jvuRTqkx"
+        }
+      },
+      "revoked": []
+    }
+  },
+  "expiredGrant": {
+    "@context": [
+      "https://trustgate.dev/ns/v1"
+    ],
+    "id": "urn:uuid:cb91291c-7d43-5a3c-afb4-582e727e0b5c",
+    "type": [
+      "CapabilityGrant"
+    ],
+    "principal": "did:key:z6MkmCH2cdCKxmUixxMSe6yTkjk6XhbMDvA9MDpRYPhf4oEs",
+    "agent": "did:key:z6MkiH6nZzJR1V1fgdGLTtYqWxTAR1bZz3vkZrpSWyg36tjZ",
+    "authorizationDetails": [
+      {
+        "type": "purchase",
+        "actions": [
+          "purchase"
+        ],
+        "locations": [
+          "vendor:*"
+        ],
+        "constraints": {
+          "maxAmount": {
+            "value": 500,
+            "currency": "USD"
+          }
+        }
+      }
+    ],
+    "validFrom": "2026-01-01T00:00:00Z",
+    "validUntil": "2026-06-30T23:59:59Z",
+    "nonce": "be3e11d6-c2b7-",
+    "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-01-01T00:00:00Z",
+      "verificationMethod": "did:key:z6MkmCH2cdCKxmUixxMSe6yTkjk6XhbMDvA9MDpRYPhf4oEs#z6MkmCH2cdCKxmUixxMSe6yTkjk6XhbMDvA9MDpRYPhf4oEs",
+      "proofPurpose": "capabilityDelegation",
+      "proofValue": "z55wVL7VZNYKj9xKCVKAjEFJDrCV2Fjn6oRULeDbAgeLptiMtTxoG1gLMasGiAwP8v1dfiYfc4tPHahTNGwRLptdo"
+    }
+  },
+  "policy": {
+    "policyId": "procurement-purchase-v1",
+    "version": 1,
+    "description": "Northwind Procurement Agent — who may ask us to execute a purchase, and within what limits.",
+    "action": "purchase",
+    "require": {
+      "identityProof": true,
+      "audienceMatch": true,
+      "requestMaxAgeSeconds": 60,
+      "rejectReusedNonce": true,
+      "credentialTypes": [
+        "VerifiedBusinessAgent"
+      ],
+      "trustedIssuers": [
+        "did:key:z6MktNm2uaVxpw5dYfa1RvHTxs8rHpEhzKYkxVTf9t8BJ33M"
+      ],
+      "notRevoked": true,
+      "authority": {
+        "action": "purchase",
+        "maxAmount": {
+          "value": 500,
+          "currency": "USD"
+        },
+        "principalMustBeCredentialController": true
+      },
+      "minVerifiedAttestations": 0
+    }
+  }
+}

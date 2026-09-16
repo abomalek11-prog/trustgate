@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#7f8c9a"/>
+    </marker>
+    <style>
+      .box { fill: #10151c; stroke: #2d3947; stroke-width: 1.5; rx: 12; }
+      .box.policy { stroke: #8f9dff; }
+      .box.decision { stroke: #31c076; }
+      .box.actor { fill: #161d26; stroke: #212b37; rx: 10; }
+      .title { fill: #e8eef4; font-size: 15px; font-weight: 600; }
+      .line { fill: #b9c4d0; font-size: 12px; }
+      .muted { fill: #7f8c9a; font-size: 11px; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .flow { stroke: #7f8c9a; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+      .flow.ok { stroke: #31c076; }
+      .flow.accent { stroke: #8f9dff; }
+    </style>
+  </defs>
+  <rect width="1200" height="560" fill="#0a0e13"/>
+  <text x="32" y="38" class="title" font-size="20">TrustGate — Identity → Claims → Verification → Policy → Decision Receipt</text>
+  <text x="32" y="58" class="muted">ALLOW(action) = IdentityValid ∧ SignatureValid ∧ Fresh ∧ CredentialValid ∧ IssuerTrusted ∧ NotRevoked ∧ ScopeAllows ∧ PolicySatisfied — a conjunction, not a score</text>
+
+  <!-- Actors row -->
+  <rect x="32" y="90" width="200" height="74" class="box actor"/>
+  <text x="48" y="114" class="title" font-size="13">Issuers</text>
+  <text x="48" y="132" class="line">Verdant Registry (trusted)</text>
+  <text x="48" y="148" class="line">Shady Certs (untrusted)</text>
+
+  <rect x="252" y="90" width="200" height="74" class="box actor"/>
+  <text x="268" y="114" class="title" font-size="13">Principal</text>
+  <text x="268" y="132" class="line">Acme Corp Treasury</text>
+  <text x="268" y="148" class="muted">delegates scoped authority</text>
+
+  <rect x="472" y="90" width="200" height="74" class="box actor"/>
+  <text x="488" y="114" class="title" font-size="13">Counterparties</text>
+  <text x="488" y="132" class="line">Northwind · Contoso</text>
+  <text x="488" y="148" class="muted">sign attestations about past acts</text>
+
+  <!-- Pipeline row -->
+  <g>
+    <rect x="32" y="220" width="200" height="150" class="box"/>
+    <text x="48" y="246" class="title">1 · Identity</text>
+    <text x="48" y="268" class="line mono">did:key:z6Mk…</text>
+    <text x="48" y="286" class="line">= Ed25519 public key</text>
+    <text x="48" y="304" class="line">Control = signature</text>
+    <text x="48" y="322" class="muted">no registry, no account</text>
+    <text x="48" y="352" class="muted mono">lib/identity</text>
+  </g>
+  <path d="M232 295 L262 295" class="flow"/>
+  <g>
+    <rect x="264" y="220" width="200" height="150" class="box"/>
+    <text x="280" y="246" class="title">2 · Claims</text>
+    <text x="280" y="268" class="line">VC 2.0 credential (issuer)</text>
+    <text x="280" y="286" class="line">Capability grant (principal)</text>
+    <text x="280" y="304" class="line">Attestations (counterparties)</text>
+    <text x="280" y="322" class="muted">all Data-Integrity signed</text>
+    <text x="280" y="352" class="muted mono">lib/credentials · authority · receipts</text>
+  </g>
+  <path d="M464 295 L494 295" class="flow"/>
+  <g>
+    <rect x="496" y="220" width="200" height="150" class="box"/>
+    <text x="512" y="246" class="title">3 · Verification</text>
+    <text x="512" y="268" class="line">eddsa-jcs-2022 proofs</text>
+    <text x="512" y="286" class="line">issuer trust · status list</text>
+    <text x="512" y="304" class="line">freshness + nonce</text>
+    <text x="512" y="322" class="line">subject / principal binding</text>
+    <text x="512" y="352" class="muted mono">lib/crypto · lib/verifier</text>
+  </g>
+  <path d="M696 295 L726 295" class="flow accent"/>
+  <g>
+    <rect x="728" y="220" width="200" height="150" class="box policy"/>
+    <text x="744" y="246" class="title">4 · Policy</text>
+    <text x="744" y="268" class="line">declarative JSON predicates</text>
+    <text x="744" y="286" class="line">required credential types</text>
+    <text x="744" y="304" class="line">trusted issuers · caps</text>
+    <text x="744" y="322" class="line">action / resource / amount</text>
+    <text x="744" y="352" class="muted mono">lib/policy</text>
+  </g>
+  <path d="M928 295 L958 295" class="flow ok"/>
+  <g>
+    <rect x="960" y="220" width="208" height="150" class="box decision"/>
+    <text x="976" y="246" class="title">5 · Decision Receipt</text>
+    <text x="976" y="268" class="line">ALLOW / DENY + 20 checks</text>
+    <text x="976" y="286" class="line">plain-English explanation</text>
+    <text x="976" y="304" class="line">signed by the verifier</text>
+    <text x="976" y="322" class="line">bound to request + policy hash</text>
+    <text x="976" y="352" class="muted mono">lib/receipts</text>
+  </g>
+
+  <!-- Actors feed claims -->
+  <path d="M132 164 L132 200 L364 200 L364 218" class="flow"/>
+  <path d="M352 164 L352 218" class="flow"/>
+  <path d="M572 164 L572 200 L380 200" class="flow" style="marker-end:none"/>
+
+  <!-- Agents row -->
+  <rect x="32" y="420" width="420" height="104" class="box actor"/>
+  <text x="48" y="446" class="title" font-size="13">Buyer Agent (requester)</text>
+  <text x="48" y="466" class="line">signs ActionRequest { action, resource, amount, nonce, issuedAt,</text>
+  <text x="48" y="482" class="line">presentation: [credential, grant, attestations] } with its own key</text>
+  <text x="48" y="506" class="muted">Spoofed clone: same DID + docs, different key → signature fails</text>
+
+  <path d="M452 472 L708 472" class="flow accent"/>
+  <text x="500" y="462" class="muted mono">POST /api/gate  (signed envelope over the wire)</text>
+
+  <rect x="710" y="420" width="458" height="104" class="box actor"/>
+  <text x="726" y="446" class="title" font-size="13">Procurement Agent (verifier) — runs TrustGate</text>
+  <text x="726" y="466" class="line">evaluates all predicates → Decision → signs receipt</text>
+  <text x="726" y="482" class="line">consumes nonce · fetches issuer status list · applies own policy</text>
+  <text x="726" y="506" class="muted">ALLOW earns the requester a fresh counterparty attestation (history grows as evidence)</text>
+</svg>

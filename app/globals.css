@@ -1,26 +1,147 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  TrustGate design tokens — a dark, neutral developer-tool palette.
+  Semantic colour rule (enforced everywhere in the UI):
+    green  = verified / ALLOW only
+    red    = failed   / DENY  only
+    amber  = warnings only
+  The brand accent is a cool violet so it never competes with the semantics.
+*/
+@theme {
+  --color-bg: #0a0e13;
+  --color-surface: #10151c;
+  --color-surface-2: #161d26;
+  --color-surface-3: #1d2631;
+  --color-line: #212b37;
+  --color-line-2: #2d3947;
+  --color-fg: #e8eef4;
+  --color-fg-2: #b9c4d0;
+  --color-muted: #7f8c9a;
+  --color-accent: #8f9dff;
+  --color-accent-2: #6f7fff;
+  --color-accent-bg: rgba(143, 157, 255, 0.12);
+  --color-ok: #31c076;
+  --color-ok-bg: rgba(49, 192, 118, 0.12);
+  --color-bad: #f04e5c;
+  --color-bad-bg: rgba(240, 78, 92, 0.12);
+  --color-warn: #f3b33d;
+  --color-warn-bg: rgba(243, 179, 61, 0.12);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 8px 30px rgba(0, 0, 0, 0.35);
+  --animate-fade-up: fade-up 260ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-pulse-soft: pulse-soft 1.4s ease-in-out infinite;
+  --animate-stamp: stamp 420ms cubic-bezier(0.2, 0.9, 0.2, 1.2) both;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes stamp {
+  from {
+    opacity: 0;
+    transform: scale(1.12);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+html {
+  color-scheme: dark;
+  background: var(--color-bg);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(143, 157, 255, 0.07), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba(49, 192, 118, 0.05), transparent 60%),
+    var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-2) transparent;
+}
+
+::selection {
+  background: rgba(143, 157, 255, 0.35);
+}
+
+/* Tooltip: any element with data-tip shows it on hover/focus */
+[data-tip] {
+  position: relative;
+}
+[data-tip]:hover::after,
+[data-tip]:focus-visible::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 0;
+  top: calc(100% + 6px);
+  z-index: 50;
+  width: max-content;
+  max-width: 320px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--color-line-2);
+  background: #0d1218;
+  color: var(--color-fg-2);
+  font-size: 12px;
+  line-height: 1.4;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  white-space: normal;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 14px;
+  box-shadow: var(--shadow-card);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-ligatures: none;
+}
+
+.json-key {
+  color: #9fb3c8;
+}
+.json-str {
+  color: #a5d6a7;
+}
+.json-num {
+  color: #ffcc80;
+}
+.json-bool {
+  color: #ce93d8;
+}
+.json-null {
+  color: #90a4ae;
 }

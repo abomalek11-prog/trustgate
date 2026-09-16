@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# keep the example env (no secrets in it)
+!.env.example
+
+# local tooling
+.claude/
