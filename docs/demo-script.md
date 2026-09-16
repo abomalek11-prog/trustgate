@@ -1,6 +1,6 @@
 # 90-second demo script (Loom)
 
-Open the live demo at the Console (`/`). Keep the Decision card and Verification
+Open the live demo at https://trustgate-lemon.vercel.app (Console, `/`). Keep the Decision card and Verification
 Trace visible on the right. Speak the bold lines.
 
 | Time | Action on screen | Say |

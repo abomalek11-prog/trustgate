@@ -4,7 +4,7 @@
 >
 > **Trust is not a score.** It is a conjunction of verifiable predicates.
 
-**Repo:** https://github.com/abomalek11-prog/trustgate · **Live demo:** _pending_ (no login) · **Loom:** _…_ · **Submission notes:** [docs/submission-notes.md](docs/submission-notes.md)
+**Repo:** https://github.com/abomalek11-prog/trustgate · **Live demo:** https://trustgate-lemon.vercel.app (no login) · **Loom:** _…_ · **Submission notes:** [docs/submission-notes.md](docs/submission-notes.md)
 
 ```
 ALLOW(action) = IdentityValid ∧ SignatureValid ∧ Fresh ∧ CredentialValid ∧ IssuerTrusted
@@ -156,7 +156,7 @@ No `.env` is required. [`.env.example`](.env.example) lists two optional, presen
 The verifier is also an endpoint. Build a freshly signed request for a scenario and pipe it into the gate:
 
 ```bash
-HOST=http://localhost:3000
+HOST=https://trustgate-lemon.vercel.app   # or http://localhost:3000
 # legitimate $250 purchase -> ALLOW
 curl -s "$HOST/api/demo/request?scenario=valid"   | curl -s -X POST -H 'content-type: application/json' -d @- "$HOST/api/gate" | jq '{decision, failedChecks: [.failedChecks[].id], explanation}'
 # spoofed clone -> DENY
@@ -175,13 +175,13 @@ curl -s "$HOST/api/demo/request?scenario=valid&amount=2000" | curl -s -X POST -H
 | `GET/PUT /api/policy` | Read / replace the verifier's policy. |
 | `GET /api/demo/fixtures` | The live public evidence bundle. |
 
-Server-side state (nonce cache, revocation flags) is per process — fine for a demo, best-effort on serverless; the browser console is the canonical stateful path.
+Server-side state (nonce cache, revocation flags) is per process — fine for a demo, best-effort on serverless (a cold start may spin up a second instance that has not seen the first nonce; once warm, replay is caught consistently). The browser console is the canonical stateful path.
 
 ## Deployment
 
 Any Node host works; there is nothing to configure.
 
-**Vercel (recommended)**
+**Vercel (recommended)** — the live demo is this exact setup: `vercel deploy --prod`, project linked to the GitHub repo, no environment variables.
 
 ```bash
 npm i -g vercel
