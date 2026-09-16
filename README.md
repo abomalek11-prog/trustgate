@@ -4,7 +4,7 @@
 >
 > **Trust is not a score.** It is a conjunction of verifiable predicates.
 
-**Live demo:** _https://…_ (no login) · **Loom:** _…_ · **Submission notes:** [docs/submission-notes.md](docs/submission-notes.md)
+**Repo:** https://github.com/abomalek11-prog/trustgate · **Live demo:** _pending_ (no login) · **Loom:** _…_ · **Submission notes:** [docs/submission-notes.md](docs/submission-notes.md)
 
 ```
 ALLOW(action) = IdentityValid ∧ SignatureValid ∧ Fresh ∧ CredentialValid ∧ IssuerTrusted

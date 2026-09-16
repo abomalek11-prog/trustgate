@@ -60,7 +60,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               <span className={cx('size-1.5 rounded-full', running ? 'bg-warn animate-pulse-soft' : 'bg-ok')} />
               engine: in-browser Ed25519 · did:key · VC 2.0
             </span>
-            <a href={process.env.NEXT_PUBLIC_REPO_URL ?? "https://github.com/"} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-fg" title="Repository">
+            <a href={process.env.NEXT_PUBLIC_REPO_URL ?? "https://github.com/abomalek11-prog/trustgate"} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-fg" title="Repository">
               <Code2 className="size-4" />
             </a>
           </div>

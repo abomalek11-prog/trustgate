@@ -1,7 +1,7 @@
 # Submission notes — DOO Builders League: "The Agent That Earns Trust"
 
 **Project:** TrustGate — the agent that earns trust
-**Repo:** _(public URL)_ · **Live demo:** _(URL)_ · **Loom:** _(URL, optional)_
+**Repo:** https://github.com/abomalek11-prog/trustgate · **Live demo:** _(URL)_ · **Loom:** _(URL, optional)_
 
 ## What to look at
 
