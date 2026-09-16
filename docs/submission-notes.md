@@ -10,9 +10,10 @@
 3. **Attack Lab** — 11 one-click attacks executed against the real verifier: spoofing, tampering, forged authority, revocation, untrusted issuer, replay, stale request, expired delegation, missing authority, borrowed credential.
 4. **Policy Editor** — change the cap or trusted issuers and watch the same request flip between ALLOW and DENY.
 5. **Agent Directory / Trust Profile** (`/agents`) — identity, credentials (with live verification), delegated authority, behavioral evidence, decision receipts, risk flags; *Challenge: prove control* runs a live proof-of-possession.
-6. **Architecture snapshot** — `/architecture`, `docs/architecture.svg`, `docs/architecture.md`: identity → claims → verification → policy → decision receipt.
-7. **Tests** — `npm test`: 80+ tests including every failure case.
-8. **HTTP API** — `GET /api/demo/request?scenario=spoofed | POST /api/gate` reproduces the cross-agent decision with curl.
+6. **Agent Graph** (`/graph`) — the agent network (issuers, principals, counterparties, agents, verifier) with signed-document edges, plus the verifier's LangGraph-style state machine; both animate live as a request is evaluated. Makes explicit that no LLM sits in the decision path.
+7. **Architecture snapshot** — `/architecture`, `docs/architecture.svg`, `docs/architecture.md`: identity → claims → verification → policy → decision receipt.
+8. **Tests** — `npm test`: 80+ tests including every failure case.
+9. **HTTP API** — `GET /api/demo/request?scenario=spoofed | POST /api/gate` reproduces the cross-agent decision with curl.
 
 ## AI tools used
 

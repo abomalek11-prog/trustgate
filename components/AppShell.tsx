@@ -10,6 +10,7 @@ import type { Stage } from '@/lib/policy/types';
 const NAV = [
   { href: '/', label: 'Console' },
   { href: '/agents', label: 'Agents' },
+  { href: '/graph', label: 'Graph' },
   { href: '/architecture', label: 'Architecture' },
 ];
 

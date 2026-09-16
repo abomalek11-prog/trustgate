@@ -16,6 +16,9 @@ export function Hero() {
         <Link href="/agents" className="inline-flex items-center gap-1 hover:text-fg">
           Agent directory <ArrowRight className="size-3" />
         </Link>
+        <Link href="/graph" className="inline-flex items-center gap-1 hover:text-fg">
+          Agent graph <ArrowRight className="size-3" />
+        </Link>
         <Link href="/architecture" className="inline-flex items-center gap-1 hover:text-fg">
           Architecture &amp; thesis <ArrowRight className="size-3" />
         </Link>

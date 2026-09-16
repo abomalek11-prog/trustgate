@@ -145,3 +145,13 @@ body {
 .json-null {
   color: #90a4ae;
 }
+
+/* Graph view: flowing edges */
+@keyframes edge-dash {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+.edge-flow {
+  animation: edge-dash 0.9s linear infinite;
+}
